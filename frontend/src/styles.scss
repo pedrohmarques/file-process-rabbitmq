@@ -1,0 +1,5 @@
+@use './assets/theme';
+html,
+body {
+    background-color: var(--background);
+}

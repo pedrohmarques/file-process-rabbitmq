@@ -1,0 +1,99 @@
+@use '../../../assets/mixins.scss' as typo;
+
+:host {
+  display: block;
+}
+
+.main-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  gap: 1rem; 
+  width: 100%;
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    .title {
+      @include typo.font-5xl;
+      font-weight: 600;
+      color: #07121e;
+
+      .gradient {
+        background-image: var(--gradient-primary);        
+        background-clip: text;
+        color: #0000;
+      }
+    }
+  
+    .desc-container {
+      display: flex;
+      justify-items: flex-start;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+  
+      .description {
+        @include typo.font-md;
+        color: #5e6a7a
+      }
+  
+      
+    }
+    
+    .button-container {
+      display: flex;
+      justify-items: flex-end;
+      justify-content: flex-end;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .5rem;
+
+      .clean-button {
+        @include typo.font-xs;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .25rem;
+        font-weight: 500;
+        cursor: pointer;
+        background-color: var(--background);
+        border: 1px solid var(--input);
+        border-radius: calc(.75rem - 2px);
+        padding: 8px;
+        box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, (0 1px 3px 0 var(--tw-shadow-color, #0000001a), 0 1px 2px -1px var(--tw-shadow-color, #0000001a));
+
+        mat-icon {
+          width: 16px;
+          height: 16px;            
+        }
+
+      }
+
+      .process-all-button {
+        @include typo.font-xs;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .25rem;
+        font-weight: 500;
+        cursor: pointer;
+        color: var(--primary-foreground);
+        background-image: var(--gradient-primary);
+        border: 1px solid var(--input);
+        border-radius: calc(.75rem - 2px);
+        padding: 8px;
+        box-shadow: var(--shadow-soft);
+
+        mat-icon {
+          width: 16px;
+          height: 16px;            
+        }
+
+      }
+    }
+  }
+}

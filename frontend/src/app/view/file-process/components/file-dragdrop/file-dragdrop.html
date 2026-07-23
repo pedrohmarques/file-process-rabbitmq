@@ -1,0 +1,24 @@
+<div class="drag-container" (click)="fileInput.click()">
+    <input
+        #fileInput
+        type="file"
+        hidden
+        multiple
+        accept=".csv,.xlsx,.xls"
+        (change)="onFilesSelected($event)"
+    />
+
+    <div class="details-container">
+        <div class="upload-button">
+            <mat-icon [svgIcon]="'upload'"></mat-icon>
+        </div>        
+        <span class="title">Arraste seus arquivos aqui</span>
+        <span class="subtitle">
+            ou <span class="info">clique para selecionar</span> — CSV, Excel (.xlsx, .xls)
+        </span>
+        <div class="examples">
+            <div class="ex"><mat-icon [svgIcon]="'file'"></mat-icon>CSV</div>
+            <div class="ex"><mat-icon [svgIcon]="'file'"></mat-icon>Excel</div>
+        </div>
+    </div>
+</div>

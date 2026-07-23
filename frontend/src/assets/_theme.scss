@@ -1,0 +1,94 @@
+:root {
+    --radius: 0.75rem;
+  
+    --background: #f8fafc;
+    --foreground: #202735;
+  
+    --card: #ffffff;
+    --card-foreground: #202735;
+  
+    --popover: #ffffff;
+    --popover-foreground: #202735;
+  
+    --primary: #6750d9;
+    --primary-foreground: #ffffff;
+  
+    --primary-glow: #9271eb;
+  
+    --secondary: #f1f3f8;
+    --secondary-foreground: #303746;
+  
+    --muted: #f3f5f8;
+    --muted-foreground: #70798b;
+  
+    --accent: #ece5ff;
+    --accent-foreground: #42346d;
+  
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+  
+    --success: #4ade80;
+  
+    --warning: #facc15;
+  
+    --border: #e3e6ed;
+  
+    --input: #e6e9ef;
+  
+    --ring: #6750d9;
+
+    --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-rose-700: #be123c;
+  
+  
+    --gradient-primary: linear-gradient(
+      135deg,
+      #6750d9,
+      #b06cff
+    );
+  
+    --gradient-subtle: linear-gradient(
+      180deg,
+      #f8fafc,
+      #f1edff
+    );
+  
+  
+    --shadow-elegant: 0 10px 40px -12px rgba(103, 80, 217, .25);
+  
+    --shadow-soft: 0 2px 12px -4px rgba(30, 40, 60, .08);
+  
+  
+    /* Charts */
+    --chart-1: #f97316;
+    --chart-2: #14b8a6;
+    --chart-3: #1e607c;
+    --chart-4: #facc15;
+    --chart-5: #fb923c;
+  
+  
+    /* Sidebar */
+    --sidebar: #f7f9fc;
+  
+    --sidebar-foreground: #151a27;
+  
+    --sidebar-primary: #1f2937;
+  
+    --sidebar-primary-foreground: #f7f9fc;
+  
+    --sidebar-accent: #eef1f6;
+  
+    --sidebar-accent-foreground: #1f2937;
+  
+    --sidebar-border: #e1e5ec;
+  
+    --sidebar-ring: #9aa3b3;
+  }

@@ -1,0 +1,115 @@
+@use '../../../../../assets/mixins.scss' as typo;
+
+:host {
+  display: block;
+}
+
+
+.processing-container {
+  width: 100%;
+  min-width: 34rem;
+  box-shadow: var(--shadow-soft);
+  
+  .processes {
+    width: 100%;
+    mat-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+    background-color: #FFF;    
+    border-radius: 8px;
+    padding: 1.2rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+
+    .control-container {
+      display: flex;
+      flex-direction: row;
+      justify-items: center;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .file-icon {
+      background-color: color-mix(in oklab, var(--color-green-600) 10%, transparent);
+      color: var(--color-green-700);
+      border-radius: .75rem;
+      width: calc(.25rem * 11);
+      height: calc(.25rem * 11);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+
+      .name {
+        @include typo.font-sm;
+        color: var(--foreground);
+        font-weight: 500;
+      }
+
+      .size {
+        @include typo.font-xs;
+        color: var(--muted-foreground);
+      }
+    }
+
+    .status {
+      @include typo.font-xs;
+      font-size: 11px !important;
+      font-weight: 500;          
+
+      mat-icon {
+        width: .8rem;
+        height: .8rem;
+      }
+
+      .type {
+        border-radius: 3.4rem;
+        padding: .25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: calc(.25rem * 1); 
+
+        &.pending {
+          color: var(--muted-foreground);
+          background-color: var(--muted);
+        }
+  
+        &.success {
+          color: var(--color-emerald-700);
+          background-color: color-mix(in oklab, var(--color-emerald-500) 10%, transparent);
+        }
+  
+        &.error {
+          color: var(--color-rose-600);
+          background-color:color-mix(in oklab, var(--color-rose-500) 10%, transparent);
+        }
+      }
+      
+    }
+  }
+
+  .empty-process {
+    @include typo.font-sm;
+    padding: 4rem;
+    border-radius: calc(.75rem + 8px);
+    background-color: color-mix(in oklab, var(--card) 40%, transparent);
+    border: 1px dashed color-mix(in oklab, var(--border) 60%, transparent);
+
+    color: var(--muted-foreground);
+  }
+}

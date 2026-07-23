@@ -1,0 +1,38 @@
+<div class="main-container">
+  <div class="header-container">
+    <span class="title">Processador de <span class="gradient">arquivos</span></span>
+    <div class="desc-container">
+      <span class="description">
+        Envie múltiplos arquivos CSV, Excel e PDF. Processe em lote, acompanhe o progresso e exporte os resultados quando terminar. 
+      </span>      
+    </div>
+
+    @if(files().length > 0) {
+      <div class="button-container">          
+          <div class="clean-button">
+            <mat-icon svgIcon="trash"></mat-icon>
+            Limpar concluídos
+          </div>       
+        
+        <div class="process-all-button">
+          <mat-icon svgIcon="play"></mat-icon>
+          Processar tudo
+        </div>
+      </div>
+    }
+  </div>
+
+  
+
+  <div class="card-container">
+    
+  </div>
+
+  <div class="dropdown-files-container">
+    <file-dragdrop (filesSelected)="sendFilesToQueue($event)"></file-dragdrop>
+  </div>
+
+  <div class="process-container">
+    <processing-files [files]="files()"></processing-files>
+  </div>
+</div>

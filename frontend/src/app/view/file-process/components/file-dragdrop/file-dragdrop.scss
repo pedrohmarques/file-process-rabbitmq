@@ -1,0 +1,77 @@
+@use '../../../../../assets/mixins.scss' as typo;
+
+:host {
+  display: block;
+}
+
+
+.drag-container {
+  background-color: #FFF;
+  box-shadow: 0 2px 12px -4px oklch(0.3 0.05 260 / 0.08);
+  min-width: 34rem;
+  border-radius: 24px;
+  border-style: dashed;
+  border-color: #dfe5ed;
+  padding: 4rem;
+  cursor: pointer;
+
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .15rem;
+
+    .upload-button {
+      background-image: var(--gradient-primary);
+      border-radius: calc(.75rem + 8px);
+      width: calc(.25rem * 14);
+      height: calc(.25rem * 14);
+      color: var(--primary-foreground);
+      display: flex;
+      justify-content: center;
+      align-items: center;     
+    }
+
+    .title {      
+      @include typo.font-md;
+      color: var(--foreground);
+      font-weight: 600;
+    }
+
+    .subtitle {
+      @include typo.font-sm;
+      color: var(--muted-foreground);
+
+      .info {
+        color: var(--primary);
+      }
+    }
+
+    .examples {
+      @include typo.font-xs;
+      font-weight: 500;
+      display: flex;
+      gap: .5rem;
+      margin-top: .25rem;
+
+      .ex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .2rem;
+        background-color: color-mix(in srgb, var(--color-emerald-500) 10%, transparent);
+        border-radius: 4px;
+        color: var(--color-emerald-600);
+        padding: 3.4px;
+        padding-block: calc(.25rem * 1);
+        padding-inline: calc(.25rem * 2.5);
+
+        mat-icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}

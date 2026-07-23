@@ -1,0 +1,29 @@
+<div class="processing-container">
+    @for(file of files(); track file.name) {
+        <div class="processes">
+            <div class="file-icon">
+                <mat-icon svgIcon="file"></mat-icon>
+            </div>
+            <div class="info">
+                <span class="name">{{ file.name }}</span>
+                <span class="size">{{ file.size }}</span>
+            </div>
+            <div class="control-container">
+                <div class="status">
+                    <span class="type pending">Na fila</span>
+                    <!-- <span class="type success"><mat-icon svgIcon="success"></mat-icon>Concluído</span> -->
+                    <!-- <span class="type error"><mat-icon svgIcon="close"></mat-icon>Falha</span> -->
+                </div>
+                <mat-icon svgIcon="play"></mat-icon>
+                <mat-icon svgIcon="close"></mat-icon>
+            </div>
+            
+        </div>
+    } @empty {
+        <div class="empty-process">
+            <span class="description">
+                Nenhum arquivo adicionado ainda. Comece enviando um lote acima.
+            </span>
+        </div>
+    }
+</div>

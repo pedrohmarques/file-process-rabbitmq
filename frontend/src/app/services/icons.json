@@ -1,0 +1,26 @@
+[
+    {
+      "name": "upload",
+      "path": "assets/icons/upload.svg"
+    },
+    {
+      "name": "file",
+      "path": "assets/icons/file.svg"
+    },
+    {
+      "name": "trash",
+      "path": "assets/icons/trash.svg"
+    },
+    {
+      "name": "play",
+      "path": "assets/icons/play.svg"
+    },
+    {
+      "name": "close",
+      "path": "assets/icons/close.svg"
+    },
+    {
+      "name": "success",
+      "path": "assets/icons/success.svg"
+    }
+]
