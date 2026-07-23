@@ -1,4 +1,4 @@
-const rabbit = require('../../services/rabbitmq.service');
+const rabbit = require('../../services/rabbitMQ.service');
 const { randomUUID } = require('crypto');
 
 exports.upload = async (req, res) => {

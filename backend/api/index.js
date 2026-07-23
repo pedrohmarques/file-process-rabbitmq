@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const rabbit = require('./src/services/rabbitmq.service');
+const rabbit = require('./src/services/rabbitMQ.service');
 const fileRoutes = require('./src/file-upload/routes/routes');
 
 const app = express();
