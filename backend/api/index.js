@@ -5,6 +5,7 @@ const http = require('http')
 const rabbit = require('./src/services/rabbitMQ.service');
 const { initSocket } = require('./src/services/socketIO')
 const fileRoutes = require('./src/file-upload/routes/routes');
+const progressConsumer = require('./src/consumers/file-progress.consumer');
 
 const app = express();
 const server = http.createServer(app)
@@ -21,7 +22,8 @@ app.use('/files', fileRoutes);
 
 (async () => {
     try {
-        await rabbit.connect();
+        await rabbit.connect(process.env.RABBITMQ_URL);
+        await progressConsumer.start()
 
         server.listen(3000, () => {
             console.log('Server Started');

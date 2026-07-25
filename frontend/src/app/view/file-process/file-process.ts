@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { FileDragdrop } from './components/file-dragdrop/file-dragdrop';
 import { ProcessingFiles } from './components/processing-files/processing-files';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
-import { catchError, EMPTY, finalize, takeUntil } from 'rxjs';
+import { catchError, EMPTY, finalize, Subscription, takeUntil } from 'rxjs';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'file-process',
@@ -16,18 +17,40 @@ import { catchError, EMPTY, finalize, takeUntil } from 'rxjs';
   styleUrl: './file-process.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FileProcess {
-  files = signal<File[]>([])
+export class FileProcess implements OnDestroy, OnInit {
+  files = signal<any[]>([])
+  private socketSubscription!: Subscription;
 
 
-  constructor(private readonly httpClient: HttpClient) {
+  constructor(private readonly httpClient: HttpClient, private socket: SocketService) {
 
   }
 
+  ngOnInit(): void {
+    this.socketSubscription = this.socket.listen<any>('file-progress').subscribe((jobProcess: any) => {
+      this.files.update(files =>
+        files.map(file =>
+          file.jobId === jobProcess.jobId
+            ? {
+                ...file,
+                progress: jobProcess.progress,
+                status: jobProcess.status
+              }
+            : file
+        )
+      );
+    })
+  }
+
+  ngOnDestroy(): void {
+    if(this.socketSubscription) {
+      this.socketSubscription.unsubscribe()
+    }
+  }
+
   sendFilesToQueue(event: File[]) {
-    this.files.set(event)
     const formData = new FormData();
-    this.files().forEach(file => {
+    event.forEach(file => {
       formData.append('files', file)
     })
 
@@ -36,8 +59,13 @@ export class FileProcess {
         console.error(error);
         return EMPTY;
       })
-    ).subscribe((res) => {
-      console.log(res)
+    ).subscribe((res: any) => {
+      if(res.length > 0) {
+        res.forEach((job: any) => {
+          this.files.set(job)
+          this.socket.emit('join-job', job.jobId)
+        })
+      }
     })
   }
 }

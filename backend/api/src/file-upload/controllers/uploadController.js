@@ -8,7 +8,6 @@ exports.upload = async (req, res) => {
                 message: 'Nenhum arquivo enviado'
             });
         }
-
         const jobs = [];
 
         for (const file of req.files) {
@@ -21,7 +20,7 @@ exports.upload = async (req, res) => {
                 createdAt: new Date()
             };
 
-            await rabbit.publish(job);
+            await rabbit.publish('files', job);
 
             jobs.push(job);
         }

@@ -11,5 +11,5 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProcessingFiles {
-  files = input<File[]>([])
+  files = input<any[]>([])
 }
