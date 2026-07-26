@@ -39,6 +39,7 @@ export class FileProcess implements OnDestroy, OnInit {
             : file
         )
       );
+      console.log(this.files())
     })
   }
 
@@ -61,8 +62,8 @@ export class FileProcess implements OnDestroy, OnInit {
       })
     ).subscribe((res: any) => {
       if(res.length > 0) {
-        res.forEach((job: any) => {
-          this.files.set(job)
+        this.files.set(res)
+        res.forEach((job: any) => {          
           this.socket.emit('join-job', job.jobId)
         })
       }

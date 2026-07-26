@@ -10,9 +10,9 @@
             </div>
             <div class="control-container">
                 <div class="status">
-                    @if(file.progress === 'success') {
+                    @if(file.status === 'success') {
                         <span class="type success"><mat-icon svgIcon="success"></mat-icon>Concluído</span>
-                    } @else if(file.progress === 'error') {
+                    } @else if(file.status === 'error') {
                         <span class="type error"><mat-icon svgIcon="close"></mat-icon>Falha</span>
                     } @else {
                         <span class="type pending">Na fila</span>
