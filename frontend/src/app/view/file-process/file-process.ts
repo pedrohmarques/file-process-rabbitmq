@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
 import { catchError, EMPTY, finalize, Subscription, takeUntil } from 'rxjs';
 import { SocketService } from '../../services/socket.service';
-import { environment } from '../../../environments/environment';
+import { AppConfigService } from '../../services/app-config.service';
 
 @Component({
   selector: 'file-process',
@@ -23,9 +23,11 @@ export class FileProcess implements OnDestroy, OnInit {
   private socketSubscription!: Subscription;
 
 
-  constructor(private readonly httpClient: HttpClient, private socket: SocketService) {
-
-  }
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly socket: SocketService,
+    private readonly appConfig: AppConfigService,
+  ) {}
 
   ngOnInit(): void {
     this.socketSubscription = this.socket.listen<any>('file-progress').subscribe((jobProcess: any) => {
@@ -56,7 +58,7 @@ export class FileProcess implements OnDestroy, OnInit {
       formData.append('files', file)
     })
 
-    this.httpClient.post(`${environment.apiUrl}/files/upload`, formData).pipe(
+    this.httpClient.post(`${this.appConfig.apiUrl}/files/upload`, formData).pipe(
       catchError(error => {
         console.error(error);
         return EMPTY;

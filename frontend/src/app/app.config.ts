@@ -6,6 +6,8 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { SvgIconService } from './services/svg-icon.service';
+import { AppConfigService } from './services/app-config.service';
+import { SocketService } from './services/socket.service';
 import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
@@ -16,9 +18,13 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideToastr(),
     provideHttpClient(),
-    provideAppInitializer(() => {
+    provideAppInitializer(async () => {
+      const appConfigService = inject(AppConfigService);
+      const socketService = inject(SocketService);
       const svgService = inject(SvgIconService);
 
+      await appConfigService.load();
+      socketService.connect(appConfigService.apiUrl);
       svgService.registerIcons();
     })
   ]
