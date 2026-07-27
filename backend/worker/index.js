@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const amqp = require('amqplib');
 const url = process.env.RABBITMQ_URL || 'amqp://localhost:5672';
 

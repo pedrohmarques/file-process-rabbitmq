@@ -25,6 +25,8 @@ services:
         condition: service_healthy
     environment:
       RABBITMQ_URL: amqp://rabbitmq:5672
+      CORS_ORIGIN: http://localhost:4200
+      PORT: 3000
     volumes:
       - ./backend/api:/app
       - /app/node_modules

@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
 import { catchError, EMPTY, finalize, Subscription, takeUntil } from 'rxjs';
 import { SocketService } from '../../services/socket.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'file-process',
@@ -55,7 +56,7 @@ export class FileProcess implements OnDestroy, OnInit {
       formData.append('files', file)
     })
 
-    this.httpClient.post('http://localhost:3000/files/upload', formData).pipe(
+    this.httpClient.post(`${environment.apiUrl}/files/upload`, formData).pipe(
       catchError(error => {
         console.error(error);
         return EMPTY;

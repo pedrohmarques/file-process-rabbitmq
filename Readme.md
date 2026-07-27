@@ -106,6 +106,36 @@ Todos os serviços são executados em containers independentes.
 
 ---
 
+# 🌐 Deploy no Netlify (Frontend)
+
+O frontend Angular pode ser publicado no Netlify. A API, o worker e o RabbitMQ precisam estar hospedados separadamente (ex.: Railway, Render, VPS).
+
+### Variáveis de ambiente
+
+| Serviço | Variável | Descrição |
+|---------|----------|-----------|
+| **Netlify** | `API_URL` | URL pública da API (ex.: `https://api.exemplo.com`) |
+| **API** | `CORS_ORIGIN` | URL do site Netlify (ex.: `https://seu-app.netlify.app`) |
+| **API** | `RABBITMQ_URL` | URL de conexão do RabbitMQ |
+| **API** | `PORT` | Porta do servidor (padrão: `3000`) |
+| **Worker** | `RABBITMQ_URL` | URL de conexão do RabbitMQ |
+
+Arquivos de referência: `frontend/.env.example`, `backend/api/.env.example`, `backend/worker/.env.example`.
+
+### Passos no Netlify
+
+1. Conecte o repositório ao Netlify.
+2. O `netlify.toml` na raiz já configura build e redirects do SPA.
+3. Em **Site settings → Environment variables**, adicione:
+   ```
+   API_URL=https://sua-api.exemplo.com
+   ```
+4. Na API, configure `CORS_ORIGIN` com a URL do site Netlify.
+
+O script `frontend/scripts/set-env.js` injeta `API_URL` no build de produção automaticamente.
+
+---
+
 # 🔄 Fluxo de processamento
 
 ### 1. Upload
