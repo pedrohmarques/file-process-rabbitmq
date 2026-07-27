@@ -6,7 +6,10 @@
             </div>
             <div class="info">
                 <span class="name">{{ file.filename }}</span>
-                <span class="size">{{ file.size }}</span>
+                <span class="size">{{ formatFileSize(file.size) }}</span>
+                <div class="progress-container">
+                    <div class="progress-bar" [style.width.%]="file.progress"></div>
+                </div>
             </div>
             <div class="control-container">
                 <div class="status">
@@ -14,14 +17,15 @@
                         <span class="type success"><mat-icon svgIcon="success"></mat-icon>Concluído</span>
                     } @else if(file.status === 'error') {
                         <span class="type error"><mat-icon svgIcon="close"></mat-icon>Falha</span>
+                    } @else if(file.status === 'processing') {
+                        <span class="type processing"><div class="spinner"></div>Processando</span>
                     } @else {
                         <span class="type pending">Na fila</span>
                     }              
                 </div>
-                <mat-icon svgIcon="play"></mat-icon>
-                <mat-icon svgIcon="close"></mat-icon>
-            </div>
-            
+                <!-- <mat-icon svgIcon="play"></mat-icon>
+                <mat-icon svgIcon="close"></mat-icon> -->
+            </div>            
         </div>
     } @empty {
         <div class="empty-process">

@@ -9,12 +9,12 @@
 
     @if(files().length > 0) {
       <div class="button-container">          
-          <div class="clean-button">
+          <div class="clean-button" (click)="files.set([])">
             <mat-icon svgIcon="trash"></mat-icon>
             Limpar concluídos
           </div>       
         
-        <div class="process-all-button">
+        <div class="process-all-button" (click)="sendFilesToQueue(files())">
           <mat-icon svgIcon="play"></mat-icon>
           Processar tudo
         </div>
