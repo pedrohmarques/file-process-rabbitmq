@@ -1,0 +1,58 @@
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: file-frontend-dev
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile.dev
+    container_name: file-api-dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    volumes:
+      - ./backend/api:/app
+      - /app/node_modules
+      - ./uploads:/app/uploads
+
+  worker:
+    build:
+      context: ./backend/worker
+      dockerfile: Dockerfile.dev
+    container_name: file-worker-dev
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    volumes:
+      - ./backend/worker:/app
+      - /app/node_modules
+      - ./uploads:/app/uploads
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
